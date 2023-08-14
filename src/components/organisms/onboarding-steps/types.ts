@@ -3,3 +3,5 @@ export interface OnboardingStepsProps {
   readonly handleNext: () => void;
   readonly handleFinish: () => void;
 }
+
+export interface OnboardingStepProps {}

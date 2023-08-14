@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { OnboardingStepsProps } from "./types";
 import { useNavigate } from "react-router-dom";
+import { StepOne } from "./components/step-1";
+import { StepTwo } from "./components/step-2";
+import { StepThree } from "./components/step-3";
 
 export function OnboardingSteps(props: OnboardingStepsProps) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,13 +22,11 @@ export function OnboardingSteps(props: OnboardingStepsProps) {
   const handleFinish = () => {
     navigate("/map");
   };
+
+  const ONBOARDING_STEPS = [<StepOne />, <StepTwo />, <StepThree />];
   return (
     <div className="onboarding-container">
-      <div className="onboarding-step">
-        {currentStep === 1 && <h2>Welcome to Step 1</h2>}
-        {currentStep === 2 && <h2>Welcome to Step 2</h2>}
-        {currentStep === 3 && <h2>Welcome to Step 3</h2>}
-      </div>
+      {ONBOARDING_STEPS[currentStep - 1]}
 
       <div className="onboarding-buttons">
         <button onClick={handlePrev} disabled={currentStep === 1}>

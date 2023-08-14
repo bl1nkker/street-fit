@@ -1,6 +1,6 @@
 import "./index.css";
 import { Button, Intent } from "@blueprintjs/core";
-import DG from "2gis-maps";
+import { load } from "@2gis/mapgl";
 import React, { useEffect, useState } from "react";
 
 const DEFAULT_COORDS = [43.238949, 76.889709]; // Almaty, Kazakhstan
@@ -15,16 +15,22 @@ export const App = () => {
 
 export const Map = () => {
   const [userCoords, setUserCoords] = useState(DEFAULT_COORDS);
-  const [map, setMap] = useState(null);
-  useEffect(() => {
-    const newMap = DG.map("map-container", {
+  const [map, setMap] = useState<any>(null);
+  const [mapglAPI, setMapglAPI] = useState<any>(null);
+  const initializeMap = async () => {
+    const loadedMapglAPI = await load();
+    setMapglAPI(loadedMapglAPI);
+    const newMap = new loadedMapglAPI.Map("map-container", {
       center: DEFAULT_COORDS,
       zoom: 13,
     });
 
     setMap(newMap);
-    return () => newMap.remove();
-  }, []);
+  };
+  useEffect(() => {
+    initializeMap();
+    return () => map && map.remove();
+  }, [map]);
 
   const onLocationPendingButton = () => {
     console.log("onLocationPendingButton");
@@ -41,7 +47,12 @@ export const Map = () => {
       );
     }
 
-    DG.marker(userCoords).addTo(map);
+    new mapglAPI.Marker(map, {
+      coordinates: [55.31878, 25.23584],
+    });
+    new ma();
+
+    // DG.marker(userCoords).addTo(map);
     map.setView(userCoords, 30);
   };
 
