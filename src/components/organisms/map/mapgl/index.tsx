@@ -12,6 +12,8 @@ export const DEFAULT_COORDS = [76.889709, 43.238949]; // Almaty, Kazakhstan
 
 export default function Mapgl() {
   const { mapglInstance, setMapglContext } = useMapglContext();
+  const [coords, setCoords] = useState(DEFAULT_COORDS);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     let map: mapgl.Map | undefined = undefined;
@@ -22,6 +24,7 @@ export default function Mapgl() {
       map = new mapgl.Map("map-container", {
         center: DEFAULT_COORDS,
         zoom: 13,
+        // key: "0121cac9-5c1f-4286-ab39-491f3bd40b6c",
         key: "a1893935-6834-4445-b97a-3405fb426c5b",
       });
 
@@ -79,7 +82,7 @@ export default function Mapgl() {
     };
   }, [setMapglContext]);
 
-  const onLocationPendingButton = useCallback(() => {
+  const onLocationPendingButton = () => {
     if (mapglInstance) {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
@@ -88,14 +91,14 @@ export default function Mapgl() {
             const lg = position.coords.longitude;
             let userCoords: Array<number>;
             userCoords = [lg, lt];
-            mapglInstance.setCenter(userCoords);
-            mapglInstance.setZoom(30);
 
             let clusterer: Clusterer | undefined = undefined;
             clusterer = new Clusterer(mapglInstance, {
               radius: 60,
             });
             clusterer.load([{ coordinates: userCoords }]);
+            mapglInstance.setCenter(userCoords);
+            mapglInstance.setZoom(30);
           },
           (error) => {
             console.error("Error getting location:", error.message);
@@ -107,7 +110,7 @@ export default function Mapgl() {
     } else {
       console.log("No map instance");
     }
-  }, [mapglInstance]);
+  };
 
   return (
     <>

@@ -6,6 +6,14 @@
   z-index: 1000; /* Adjust this value as needed */
   padding: 10px 20px;
   cursor: pointer;
+
+  border-radius: 1em;
+  border: none;
+  width: 10em;
+  height: 3em;
+  font-size: 2em;
+  background-color: #404854;
+  color: #fff;
 }
 
 .App-map-container {

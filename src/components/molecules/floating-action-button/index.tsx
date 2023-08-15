@@ -5,11 +5,7 @@ import "./index.css";
 export function FloatingActionButton(props: FloatingActionButtonProps) {
   const { onClick } = props;
   return (
-    <Button
-      onClick={onClick}
-      className="floating-button"
-      intent={Intent.SUCCESS}
-    >
+    <Button onClick={onClick} className="floating-button">
       I'm ready
     </Button>
   );
