@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { OnboardingSteps } from "components/organisms/onboarding-steps";
+import React from "react";
 
 function Onboarding() {
-  return <div></div>;
+  return <OnboardingSteps />;
 }
 
 export default Onboarding;

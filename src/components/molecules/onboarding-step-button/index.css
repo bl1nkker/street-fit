@@ -1,0 +1,11 @@
+.step-button {
+  background-color: #404854;
+  border: none;
+  border-radius: 1em;
+  width: 5em;
+  height: 1em;
+}
+
+.active {
+  background-color: #abb3bf;
+}

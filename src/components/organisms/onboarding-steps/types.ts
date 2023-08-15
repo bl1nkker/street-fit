@@ -4,4 +4,6 @@ export interface OnboardingStepsProps {
   readonly handleFinish: () => void;
 }
 
-export interface OnboardingStepProps {}
+export interface OnboardingStepProps {
+  readonly title: string;
+}
