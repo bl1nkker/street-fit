@@ -83,6 +83,7 @@ export default function Mapgl() {
   }, [setMapglContext]);
 
   const onLocationPendingButton = () => {
+    console.log('onLocationPendingButton');
     if (mapglInstance) {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
