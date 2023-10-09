@@ -16,7 +16,7 @@ export function OnboardingSteps() {
   };
 
   const handleFinish = () => {
-    navigate("/map");
+    navigate("/login");
   };
 
   const ONBOARDING_TITLES = [
